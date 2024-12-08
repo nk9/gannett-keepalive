@@ -1,0 +1,16 @@
+name: Fetch URL Daily
+
+on:
+  schedule:
+    # Runs at 00:00 UTC daily
+    - cron: "0 0 * * *"
+
+jobs:
+  fetch-url:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Fetch URL
+        run: |
+          curl -X GET "https://gannett.cc/api/keepalive" -o response.txt
+          echo "Fetched URL and saved response to response.txt"
